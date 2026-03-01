@@ -56,7 +56,9 @@ public class LoginServlet extends HttpServlet {
             // 5. Create a secure session to remember the user across the application
             HttpSession session = request.getSession();
             session.setAttribute("loggedUser", user.getUsername());
-            session.setAttribute("userRole", user.getRole());
+            
+            // FIXED: Changed "userRole" to "loggedRole" so it matches your dashboard exactly!
+            session.setAttribute("loggedRole", user.getRole()); 
             
             // 6. Redirect them to the main dashboard
             response.sendRedirect("dashboard.jsp");

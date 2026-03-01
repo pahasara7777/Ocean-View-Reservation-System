@@ -18,7 +18,7 @@ public class DatabaseConnection {
     // IMPORTANT: Update the USER and PASSWORD to match your local MySQL setup!
     private static final String URL = "jdbc:mysql://localhost:3306/ocean_view_db";
     private static final String USER = "root";
-    private static final String PASSWORD = "securepassword";
+    private static final String PASSWORD = "";
 
     /**
      * Private constructor to prevent instantiation from outside the class.

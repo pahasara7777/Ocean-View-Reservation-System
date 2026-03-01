@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     // SECURE SYSTEM ACCESS: Check if the user is actually logged in.
-    // If the session attribute is null, redirect them back to the login page.
     String username = (String) session.getAttribute("loggedUser");
-    String role = (String) session.getAttribute("userRole");
+    
+    // Make sure this exactly matches what you typed in LoginServlet.java!
+    String role = (String) session.getAttribute("loggedRole"); 
     
     if (username == null) {
         response.sendRedirect("login.jsp?error=Unauthorized access. Please log in first.");
@@ -115,6 +116,18 @@
                     <p class="text-muted small">View system guidelines for new staff members.</p>
                 </a>
             </div>
+
+            <%-- ONLY show this card if the user's role is Manager OR Admin (ignoring upper/lowercase) --%>
+            <% if ("Manager".equalsIgnoreCase(role) || "Admin".equalsIgnoreCase(role)) { %>
+                <div class="col-md-4">
+                    <a href="ManageStaffServlet" class="dashboard-card bg-white h-100">
+                        <i class="bi bi-people card-icon"></i>
+                        <h5 class="fw-bold">Manage Staff</h5>
+                        <p class="text-muted small">View all staff, add new members, and securely remove accounts.</p>
+                    </a>
+                </div>
+            <% } %>
+            
         </div>
     </div>
 
